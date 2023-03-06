@@ -6,19 +6,14 @@
 
 ## HOW TO USE
 
-### Just copy source code from DankCode.js file and start writing your
-### own code in `CODE AREA` (in the end of code) and create a new gist.
+### Just copy source code from DankCode.js file and start writing your own code in `CODE AREA` (in the end of code) and create a new gist.
 ### To run this use this Supibot command:
 
 `$dankdebug importGist:<YOUR GIST ID> force:true function:args,emote`
 
 ## DEBUGGING
 
-### To enable debug mode, you need change value of **DEBUG** constant at the top.
-
-### Recommended to debug in the browser console or on special
-
-### web-interpretators.
+### To enable debug mode, you need change value of **DEBUG** constant at the top. Recommended to debug in the browser console or on special web-interpretators.
 
 
 
@@ -185,12 +180,8 @@ _olleH_
 
 ### Don't define variables with this names:
 
-_msg, emote, args, command, platform, executor, channel, query, aliasStack,_
-
-_channelCustomData, customData, utils_
+_msg, emote, args, command, platform, executor, channel, query, aliasStack, channelCustomData, customData, utils_
 
 ### Supibot allows use only limited list of utils methods:
 
-_capitalize, randArray, random, randomString, removeAccents, shuffleArray, timeDelta,_
-
-_wrapString, zf_
+_capitalize, randArray, random, randomString, removeAccents, shuffleArray, timeDelta, wrapString, zf_
