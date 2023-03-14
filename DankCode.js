@@ -1,6 +1,6 @@
 /*
-	DankCode - v0.1.0
-	Beta 03.03.2023
+	DankCode - v0.1.1
+	Beta 14.03.2023
 
 	A JavaScript Supibot library for better and cozy coding
 
@@ -20,11 +20,11 @@ const DEBUG = false;
 const DEBUG_METHOD = "chat";
 
 // Don't modify that
-const DC_VERSION = "0.1.0";
+const DC_VERSION = "0.1.1";
 const DC_RELEASE = "beta";
 
-var ERRORS = [];
-var WARNS = [];
+var ERRORS = {"errors":[],"clear":function(){ERRORS.errors = [];}};
+var WARNS = {"warns":[],"clear":function(){WARNS.warns = [];}};
 
 emote = "";
 
@@ -38,9 +38,9 @@ if (DEBUG && DEBUG_METHOD == "browser"){
 		}
 	}
 
-	const executor = "dankcodedebug";
-	const channel = "dankcodedebug";
-	const platform = "twitch";
+	var executor = "dankcodedebug";
+	var channel = "dankcodedebug";
+	var platform = "twitch";
 }
 
 /////////////////// MAIN ///////////////////
@@ -81,32 +81,34 @@ function printOut(s){
 	emote = s;
 }
 
+function printf(s){
+	emote += (DEBUG && DEBUG_METHOD == "browser" ? s+"\n" : s);
+}
+
 function print(s){
 	var i = 0;
 	var out = [];
 
-	if (typeof(s) != "string"){
-		log("[print] Type a valid string into <s> argument: print("+s+")", "error");
-	} else {
-		out.push("");
+	out.push("");
 
-		for (var e of s){
-			if (i == 38){
-				out.push("");
-				i = 0;
-			} else {
-				out[(out.length == 0 ? out.length : out.length - 1)] += e;
-				i += 1;
-			}
+	for (var e of s){
+		if (i == 38){
+			out.push("");
+			i = 0;
+		} else {
+			out[(out.length == 0 ? out.length : out.length - 1)] += e;
+			i += 1;
 		}
+	}
 
-		if(out[out.length - 1].length < 38){
-			out[out.length - 1] += "⠀".repeat(38 - out[out.length - 1].length);
-		}
+	/*
+	if(out[out.length - 1].length < 38){
+		out[out.length - 1] += "⠀".repeat(38 - out[out.length - 1].length);
+	}
+	*/
 
-		for (let e of out){
-			emote += e;
-		}
+	for (let e of out){
+		printf(e);
 	}
 }
 
@@ -174,12 +176,54 @@ function reverseStr(s){
 	}
 }
 
+/// Search
+
+function contains(s, sw){
+	try {
+		if (typeof(s) == "string"){
+			s = s.split(" ");
+		}
+
+		if (typeof(sw) == "string"){
+			for (let e of s){
+				if (e == sw){
+					return true;
+				} else {
+					continue;
+				}
+			}
+
+			return false;
+		} else if (typeof(sw) == "object") {
+			for (let w of sw){
+				for (let e of s){
+					if (e == w){
+						return true;
+					} else {
+						continue;
+					}
+				}
+			}
+
+			return false;
+		} else {
+			log("[contains] Invalid data type of <sw> argument: contains("+add+")", "error");
+		}
+	} catch(err){
+		log("[contains] "+err, "error")
+	}
+}
+
 /////////////////// CODE AREA ///////////////////
 
-// Your code here:
-// print("Hello World!");
+function main(){
+	// Your code here:
+	// print("Hello World!");
+}
 
 /////////////////// ENDING ///////////////////
+
+main();
 
 if (DEBUG && DEBUG_METHOD == "browser"){
 	alert(emote);
